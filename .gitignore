@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.env
+venv/
+env/
+data/
+# We keep outputs for this specific project as it's a portfolio submission
+# outputs/
