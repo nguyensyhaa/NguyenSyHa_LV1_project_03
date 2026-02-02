@@ -84,14 +84,17 @@ class MovieAnalyzer:
     def get_roi_stats(self, n: int = 5) -> pd.DataFrame:
         """Task 8: Return on Investment (ROI) Analysis.
         ROI = (Revenue - Budget) / Budget
-        Filters: Budget > 10k to avoid skewed results from near-zero budget indie films/errors.
+        Filters: Budget > MIN_BUDGET_FOR_ROI to avoid skewed results from near-zero budget indie films/errors.
         """
+        from src.config import MIN_BUDGET_FOR_ROI
+        
         # Filter reasonable budget to avoid division by zero or massive outliers on $1 budget
-        df_calc = self.df[self.df['budget'] > 10000].copy()
+        df_calc = self.df[self.df['budget'] > MIN_BUDGET_FOR_ROI].copy()
         
         # Calculate ROI
         df_calc['roi'] = (df_calc['revenue'] - df_calc['budget']) / df_calc['budget']
         
         return df_calc.sort_values(by='roi', ascending=False).head(n)
+
 
 

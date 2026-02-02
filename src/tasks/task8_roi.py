@@ -1,9 +1,10 @@
 import pandas as pd
+from src.config import MIN_BUDGET_FOR_ROI
 
 def run(df: pd.DataFrame, plot: bool = False):
     print("\nRunning Task 8: ROI Analysis...")
     
-    df_calc = df[df['budget'] > 10000].copy()
+    df_calc = df[df['budget'] > MIN_BUDGET_FOR_ROI].copy()
     df_calc['roi'] = (df_calc['revenue'] - df_calc['budget']) / df_calc['budget']
     top_roi = df_calc.sort_values(by='roi', ascending=False).head(5)
     
@@ -14,3 +15,4 @@ def run(df: pd.DataFrame, plot: bool = False):
         print(" -> Generating ROI Chart...")
         from src.visualization import plot_roi
         plot_roi(top_roi)
+
