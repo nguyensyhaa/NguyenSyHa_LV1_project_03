@@ -8,7 +8,7 @@ env/
 venv/
 
 # Poetry
-poetry.lock
+
 .venv/
 dist/
 *.egg-info/
